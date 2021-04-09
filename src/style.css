@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'EquipmentPro';
+  src: url('../src/assets/font/EquipmentPro.eot'),
+       url('../src/assets/font/EquipmentPro.woff') format('woff'),
+       url('../src/assets/font/EquipmentPro.ttf') format('truetype'),
+       url('../src/assets/font/EquipmentPro.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,10 @@
+
+We add a function called createAligned() that takes the Scene, the total width of the level, a texture key, and the desired scroll factor.
+
+The width of the texture is retrieved using its source image on line 11. We use it to determine how many instances of the image we need to cover the entire width of the level.
+
+That value is stored in count by dividing the totalWidth by the width of the texture. We use Math.ceil() to round the number up to ensure the full width is accounted for. The result is then multiplied by the scrollFactor.
+
+We do this multiplication so that slower-moving layers can have less Image instances and faster-moving layers will have more.
+
+After that, we use a for loop to create the Image instances. Each image is placed to the right of the previous by adding the width of the last created Image to the x variable.
