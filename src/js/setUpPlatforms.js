@@ -8,10 +8,9 @@ const setUpPlatforms = (platforms, texture, worldBounds) => {
   // Populate all platforms
   for (let x = 200; x <= worldBounds; x){
     let posY = Phaser.Math.Between(450, 560)
-    let posX = Phaser.Math.Between(50, 100)
+    let posX = Phaser.Math.Between(50, 180)
     platforms.create(x, posY, texture)
     x = x + posX + platformWidth;
-    console.log('x',x)
   }
 }
 
