@@ -2,10 +2,8 @@ import '../phaser';
 
 import createAligned from '../js/createAligned'
 import repeat from '../js/repeat'
-//import gameOver from '../js/gameOver'
 import setUpPlatforms from '../js/setUpPlatforms'
 import countCoin from '../js/countCoin'
-//import gameOver from '../js/gameOver';
 
 class GameScene extends Phaser.Scene {
 
@@ -23,10 +21,10 @@ class GameScene extends Phaser.Scene {
     this.cursors;
     this.player;
     this.coins;
-    this.scoreText;
+    this.pointsText;
     this.timerText;
     this.timer = 0;
-    this.score = 0;
+    this.points = 0;
   }
 
   preload() {
@@ -49,13 +47,6 @@ class GameScene extends Phaser.Scene {
 
     this.load.spritesheet('edx-run',
       '../src/assets/player/run.png', {
-        frameWidth: 50,
-        frameHeight: 37
-      }
-    );
-
-    this.load.spritesheet('edx-run-r',
-      '../src/assets/player/run-r.png', {
         frameWidth: 50,
         frameHeight: 37
       }
@@ -105,16 +96,6 @@ class GameScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('edx-run-r', {
-        start: 0,
-        end: 5
-      }),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    this.anims.create({
       key: 'turn',
       frames: [{
         key: 'edx-run',
@@ -146,8 +127,8 @@ class GameScene extends Phaser.Scene {
     setUpPlatforms(platforms, 'platform', worldBounds);
     //repeat(platforms, 'ground');
 
-    //Score & timer
-    this.scoreText = this.add.text(32, 16, 'Score: 0', {
+    //points & timer
+    this.pointsText = this.add.text(32, 16, 'Points: 0', {
       fontFamily: 'equipmentPro',
       stroke: '#fff',
       strokeThickness: 10,
@@ -218,8 +199,8 @@ class GameScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, this.coins, function (player, coin) {
       coin.disableBody(true, true);
-      this.score += 10;
-      this.scoreText.setText('Score: ' + this.score);
+      this.points += 10;
+      this.pointsText.setText('points: ' + this.points);
 
       let x = (player.x < worldBounds / 2 + 1) ? Phaser.Math.Between(player.x, player.x + 400) : Phaser.Math.Between(player.x, player.x - 400);
 
@@ -242,7 +223,7 @@ class GameScene extends Phaser.Scene {
 
     if (this.cursors.right.isDown) {
       this.player.setVelocityX(200);
-      this.player.anims.play('right', true);
+      this.player.anims.play('right');
     } else {
       this.player.setVelocityX(0);
       this.player.anims.play('turn');
@@ -256,21 +237,22 @@ class GameScene extends Phaser.Scene {
         // player can only double jump if it is on the floor
         this.canDoubleJump = true;
         this.player.body.setVelocityY(-250);
-        this.player.anims.play('jump', true);
+        this.player.anims.play('jump');
       } else if (this.canDoubleJump) {
         // player can only jump 2x (double jump)
         this.canDoubleJump = false;
         this.player.body.setVelocityY(-200);
-        this.player.anims.play('jump', true);
+        this.player.anims.play('jump');
       }
     }
 
   }
 
   gameOver() {
-    console.log('timer', this.timer.now)
-    console.log('score', this.score)
-    this.scene.pause('Game');
+    localStorage.setItem('points', this.points)
+    localStorage.setItem('time', this.timer.now)
+    this.scene.destroy('Game');
+    this.scene.start('gameOver')
   }
 
 }

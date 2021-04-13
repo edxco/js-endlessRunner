@@ -2,21 +2,7 @@ import 'phaser';
 
 class TitleScene extends Phaser.Scene {
   constructor() {
-    super({
-      key: 'Title'
-    });
-  }
-
-  preload() {
-
-
-    this.load.image('logo', '../src/assets/title/edxco.png');
-    for (let i = 0; i < 500; i++) {
-      this.load.image('logo' + i, '../src/assets/title/edxco.png');
-    }
-    this.load.image('background', '../src/assets/title/bg.png');
-
-
+    super('Title');
   }
 
   create() {
@@ -26,7 +12,7 @@ class TitleScene extends Phaser.Scene {
     this.add.sprite(0, 0, 'background').setOrigin(0, 0);
     this.add.image(400, 550, 'logo').setScale(0.5);
 
-    this.add.text(screenCenterX, 100, '- Endless Warrior -', {
+    this.add.text(screenCenterX, 100, '- Ice Warrior -', {
       fontFamily: 'EquipmentPro',
       stroke: '#DA1F4C',
       strokeThickness: 12,
@@ -42,7 +28,7 @@ class TitleScene extends Phaser.Scene {
       strokeThickness: 8
     }).setOrigin(0.5);
 
-    const score = this.add.text(screenCenterX, 350, 'Score', {
+    const score = this.add.text(screenCenterX, 350, 'Scores', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#000',
@@ -57,9 +43,7 @@ class TitleScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     start
-      .setInteractive({
-        //useHandCursor: true
-      });
+      .setInteractive();
 
     score
       .setInteractive({
@@ -76,7 +60,7 @@ class TitleScene extends Phaser.Scene {
         this.enterButtonHoverState(start)
       })
       .on('pointerdown', () => {
-        this.clickButton('Game')
+        this.clickButton('History')
       })
       .on('pointerout', () => {
         this.enterButtonRestState(start)

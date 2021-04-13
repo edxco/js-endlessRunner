@@ -5,10 +5,14 @@ export default class PreloaderScene extends Phaser.Scene {
     super('Preloader');
   }
 
-  preload() {
-    this.add.image(400, 200, 'logo');
+  init() {
+    this.readyCount = 0;
+  }
 
-     // display progress bar
+  preload() {
+    this.add.image(400, 180, 'logo');
+
+    // display progress bar
     let progressBar = this.add.graphics();
     let progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
@@ -27,7 +31,7 @@ export default class PreloaderScene extends Phaser.Scene {
     });
     loadingText.setOrigin(0.5, 0.5);
 
-    var percentText = this.make.text({
+    let percentText = this.make.text({
       x: width / 2,
       y: height / 2 - 5,
       text: '0%',
@@ -38,7 +42,7 @@ export default class PreloaderScene extends Phaser.Scene {
     });
     percentText.setOrigin(0.5, 0.5);
 
-    var assetText = this.make.text({
+    let assetText = this.make.text({
       x: width / 2,
       y: height / 2 + 50,
       text: '',
@@ -61,6 +65,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.on('fileprogress', function (file) {
       assetText.setText('Loading asset: ' + file.key);
     });
+
     // remove progress bar when complete
     this.load.on('complete', function () {
       progressBar.destroy();
@@ -71,21 +76,17 @@ export default class PreloaderScene extends Phaser.Scene {
       this.ready();
     }.bind(this));
 
-    this.timedEvent = this.time.delayedCall(1000, this.ready, [], this);
+    this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
-    this.load.image('edxLogo', '../src/assets/title/edxco.png');
-  }
-
-  init() {
-    this.readyCount = 0;
+    this.load.image('logo', '../src/assets/title/edxco.png');
+    this.load.image('background', '../src/assets/title/bg.png');
   }
 
   ready() {
+    this.scene.start('Title');
     this.readyCount++;
     if (this.readyCount === 2) {
       this.scene.start('Title');
     }
   }
-
-  create() {}
 };
