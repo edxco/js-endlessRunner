@@ -1,10 +1,10 @@
 import {
-  setcoinsPoints
+  setcoinsPoints, setScore
 } from "../js/getScore";
 
-export default class gameOverScene extends Phaser.Scene {
+export default class winScene extends Phaser.Scene {
   constructor() {
-    super('GameOver');
+    super('WinScene');
   }
 
   preload() {
@@ -21,9 +21,9 @@ export default class gameOverScene extends Phaser.Scene {
 
     let coinsPoints = localStorage.getItem('points');
     let timeSpent = localStorage.getItem('time');
-    let levelMaxTime = 20;
+    let levelMaxTime = 40;
 
-    let bonus = (timeSpent >= levelMaxTime) ? 1.1 : 1.3;
+    let bonus = (timeSpent <= 40) ? 2 : 1.5;
 
     timeSpent = Math.round(timeSpent * 100) / 100
 

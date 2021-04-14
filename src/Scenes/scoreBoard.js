@@ -3,9 +3,9 @@ import {
   getScore
 } from '../js/getScore';
 
-class Scoreboard extends Phaser.Scene {
+class scoreBoard extends Phaser.Scene {
   constructor() {
-    super('Scoreboard');
+    super('scoreBoard');
 
     this.center = 768 / 2;
     this.fontSize = 42;
@@ -18,7 +18,19 @@ class Scoreboard extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(this.center, 100, '- Ice Warrior -', {
+    const start = this.add.text(this.center, 110, 'Play Again', {
+      fontFamily: 'EquipmentPro',
+      fontSize: 44,
+      stroke: '#FF0000',
+      strokeThickness: 8
+    }).setOrigin(0.5);
+
+    start.setInteractive();
+    start.on('pointerdown', () => {
+      this.scene.start('Game');
+    })
+
+    this.add.text(this.center, 50, '- Ice Warrior -', {
       fontFamily: 'EquipmentPro',
       stroke: '#265CFF',
       strokeThickness: 12,
@@ -38,12 +50,6 @@ class Scoreboard extends Phaser.Scene {
       this.errorMessage();
     });
     this.createScore(this.score);
-
-    const backButton = this.add.image(690, 650, 'btnMenu').setOrigin(1, 0).setInteractive().setScale(2);
-
-    backButton.on('pointerup', () => {
-      this.scene.start('MenuScene');
-    });
   }
 
   createScore(score) {
@@ -52,9 +58,11 @@ class Scoreboard extends Phaser.Scene {
       s.result.forEach((element) => {
         const scorePosition = [this.center, 245 + lastPositionY];
         this.add.text(...scorePosition, `${element.user} : ${element.score}`, this.fontOptions).setOrigin(0.5);
+
         lastPositionY += this.fontStep;
       });
     });
+    
   }
 
   errorMessage() {
@@ -63,4 +71,4 @@ class Scoreboard extends Phaser.Scene {
   }
 }
 
-export default Scoreboard;
+export default scoreBoard;
