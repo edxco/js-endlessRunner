@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "simple but creative game, using Phaser.",
   "main": "index.js",
+  "eslintIgnore": ["creditScene.js", "gameScene.js"],
   "dependencies": {
     "@babel/runtime": "^7.13.9",
     "jest-fetch-mock": "^3.0.3",

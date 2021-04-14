@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import {
-  getScore
+  getScore,
 } from '../js/getScore';
 
 class scoreBoard extends Phaser.Scene {
@@ -13,7 +13,7 @@ class scoreBoard extends Phaser.Scene {
     this.fontOptions = {
       fontSize: `${this.fontSize}px`,
       fontFamily: 'EquipmentPro',
-      fill: '#fff'
+      fill: '#fff',
     };
   }
 
@@ -22,19 +22,19 @@ class scoreBoard extends Phaser.Scene {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#FF0000',
-      strokeThickness: 8
+      strokeThickness: 8,
     }).setOrigin(0.5);
 
     start.setInteractive();
     start.on('pointerdown', () => {
       this.scene.start('Game');
-    })
+    });
 
     this.add.text(this.center, 50, '- Ice Warrior -', {
       fontFamily: 'EquipmentPro',
       stroke: '#265CFF',
       strokeThickness: 12,
-      fontSize: '60px'
+      fontSize: '60px',
     }).setOrigin(0.5);
 
     this.score = null;
@@ -43,7 +43,7 @@ class scoreBoard extends Phaser.Scene {
       stroke: '#003366',
       strokeThickness: 12,
       fontSize: '48px',
-      fill: '#fff'
+      fill: '#fff',
     }).setOrigin(0.5);
 
     this.score = getScore().catch(() => {
@@ -62,7 +62,6 @@ class scoreBoard extends Phaser.Scene {
         lastPositionY += this.fontStep;
       });
     });
-    
   }
 
   errorMessage() {

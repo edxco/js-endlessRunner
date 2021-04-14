@@ -1,12 +1,11 @@
 const repeat = (platforms, texture) => {
-  let x = 0
-  let count = 4;
-  for (let i = 0; i < count; ++i) {
-       const m = platforms.create(x, 590, texture)
-          //.setOrigin(0, 590)
-          .setScrollFactor(.5)
-      x += 32
+  let x = 0;
+  const count = 4;
+  for (let i = 0; i < count; i += 1) {
+    platforms.create(x, 590, texture)
+      .setScrollFactor(0.5);
+    x += 32;
   }
-}
+};
 
 export default repeat;

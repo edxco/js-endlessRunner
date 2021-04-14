@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from 'phaser';
 
 class TitleScene extends Phaser.Scene {
   constructor() {
@@ -6,7 +6,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   create() {
-    //Center text
+    // Center text
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
 
     this.add.sprite(0, 0, 'background').setOrigin(0, 0);
@@ -16,7 +16,7 @@ class TitleScene extends Phaser.Scene {
       fontFamily: 'EquipmentPro',
       stroke: '#265CFF',
       strokeThickness: 12,
-      fontSize: 60
+      fontSize: 60,
     }).setOrigin(0.5);
 
     // Menu Options
@@ -25,21 +25,21 @@ class TitleScene extends Phaser.Scene {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#003366',
-      strokeThickness: 8
+      strokeThickness: 8,
     }).setOrigin(0.5);
 
     const score = this.add.text(screenCenterX, 350, 'Scores', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#003366',
-      strokeThickness: 8
+      strokeThickness: 8,
     }).setOrigin(0.5);
 
     const credits = this.add.text(screenCenterX, 400, 'Credits', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#003366',
-      strokeThickness: 8
+      strokeThickness: 8,
     }).setOrigin(0.5);
 
     start
@@ -47,64 +47,65 @@ class TitleScene extends Phaser.Scene {
 
     score
       .setInteractive({
-        useHandCursor: true
+        useHandCursor: true,
       });
 
     credits
       .setInteractive({
-        useHandCursor: true
+        useHandCursor: true,
       });
 
     start
       .on('pointerover', () => {
-        this.enterButtonHoverState(start)
+        this.enterButtonHoverState(start);
       })
       .on('pointerdown', () => {
-        this.clickButton('History')
+        this.clickButton('History');
       })
       .on('pointerout', () => {
-        this.enterButtonRestState(start)
+        this.enterButtonRestState(start);
       });
 
     score
       .on('pointerover', () => {
-        this.enterButtonHoverState(score)
+        this.enterButtonHoverState(score);
       })
       .on('pointerdown', () => {
-        this.clickButton('Score')
+        this.clickButton('Score');
       })
       .on('pointerout', () => {
-        this.enterButtonRestState(score)
+        this.enterButtonRestState(score);
       });
 
-      credits
+    credits
       .on('pointerover', () => {
-        this.enterButtonHoverState(credits)
+        this.enterButtonHoverState(credits);
       })
       .on('pointerdown', () => {
-        this.clickButton('Credits')
+        this.clickButton('Credits');
       })
       .on('pointerout', () => {
-        this.enterButtonRestState(credits)
+        this.enterButtonRestState(credits);
       });
   }
 
+  /* eslint class-methods-use-this:
+  ["error", { "exceptMethods": ["enterButtonHoverState", "enterButtonRestState"] }] */
   enterButtonHoverState(btn) {
     btn.setStyle({
-      fill: '#000'
+      fill: '#000',
     });
   }
 
   enterButtonRestState(btn) {
     btn.setStyle({
-      fill: '#fff'
+      fill: '#fff',
     });
   }
 
   clickButton(scene) {
     this.scene.switch(scene);
   }
-
 }
 
 export default TitleScene;

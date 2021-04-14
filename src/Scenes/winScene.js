@@ -1,6 +1,7 @@
+import Phaser from 'phaser';
 import {
-  setScore
-} from "../js/getScore";
+  setScore,
+} from '../js/getScore';
 
 export default class winScene extends Phaser.Scene {
   constructor() {
@@ -12,24 +13,23 @@ export default class winScene extends Phaser.Scene {
   }
 
   create() {
-    const width = this.scale.width;
-    const height = this.scale.height;
+    const { width } = this.scale;
 
-    const layOutX = (width / 2) - 200
+    const layOutX = (width / 2) - 200;
 
-    this.add.image(400, 300, 'bg')
+    this.add.image(400, 300, 'bg');
 
-    let coinsPoints = localStorage.getItem('points');
+    const coinsPoints = localStorage.getItem('points');
     let timeSpent = localStorage.getItem('time');
-    let levelMaxTime = 60;
+    const levelMaxTime = 60;
 
-    let bonus = (timeSpent <= levelMaxTime) ? 2 : 1.5;
+    const bonus = (timeSpent <= levelMaxTime) ? 2 : 1.5;
 
-    timeSpent = Math.round(timeSpent * 100) / 100
+    timeSpent = Math.round(timeSpent * 100) / 100;
 
-     // Compute the final score
-     let total = Math.round(Math.max(1, levelMaxTime - timeSpent) * bonus  * 1);
-     total = total * coinsPoints;
+    // Compute the final score
+    let total = Math.round(Math.max(1, levelMaxTime - timeSpent) * bonus * 1);
+    total *= coinsPoints;
 
     this.text1 = this.add.text(layOutX, 100, 'You lost!', {
       fontFamily: 'equipmentPro',
@@ -37,7 +37,7 @@ export default class winScene extends Phaser.Scene {
       stroke: '#fff',
       strokeThickness: 8,
       fontSize: '49px',
-      fill: '#265CFF'
+      fill: '#265CFF',
     });
 
     this.text1 = this.add.text(layOutX, 180, `Coins: ${coinsPoints}`, {
@@ -45,17 +45,17 @@ export default class winScene extends Phaser.Scene {
       stroke: '#fff',
       strokeThickness: 8,
       fontSize: '32px',
-      fill: '#B25754'
+      fill: '#B25754',
     });
 
     this.tweens.add({
       targets: this.text1,
       alpha: {
         from: 0,
-        to: 1
+        to: 1,
       },
       ease: 'Cubic.easeIn',
-      duration: 1000
+      duration: 1000,
     });
 
     this.text2 = this.add.text(layOutX, 220, `Your time: ${timeSpent}`, {
@@ -63,17 +63,17 @@ export default class winScene extends Phaser.Scene {
       stroke: '#fff',
       strokeThickness: 8,
       fontSize: '32px',
-      fill: '#B25754'
+      fill: '#B25754',
     });
 
     this.tweens.add({
       targets: this.text2,
       alpha: {
         from: 0,
-        to: 1
+        to: 1,
       },
       ease: 'Cubic.easeIn',
-      duration: 1500
+      duration: 1500,
     });
 
     this.text3 = this.add.text(layOutX, 260, `Bonus: ${bonus}`, {
@@ -81,17 +81,17 @@ export default class winScene extends Phaser.Scene {
       stroke: '#fff',
       strokeThickness: 8,
       fontSize: '32px',
-      fill: '#FF0000'
+      fill: '#FF0000',
     });
 
     this.tweens.add({
       targets: this.text3,
       alpha: {
         from: 0,
-        to: 1
+        to: 1,
       },
       ease: 'Cubic.easeIn',
-      duration: 2000
+      duration: 2000,
     });
 
     this.text4 = this.add.text(layOutX, 330, `Your score: ${total}`, {
@@ -99,17 +99,17 @@ export default class winScene extends Phaser.Scene {
       stroke: '#fff',
       strokeThickness: 5,
       fontSize: '46px',
-      fill: '#265CFF'
+      fill: '#265CFF',
     });
 
     this.tweens.add({
       targets: this.text4,
       alpha: {
         from: 0,
-        to: 1
+        to: 1,
       },
       ease: 'Cubic.easeIn',
-      duration: 2800
+      duration: 2800,
     });
 
 
@@ -118,18 +118,18 @@ export default class winScene extends Phaser.Scene {
       fontSize: 44,
       stroke: '#003366',
       fill: '#fff',
-      strokeThickness: 11
+      strokeThickness: 11,
     }).setOrigin(0.5);
 
     this.tweens.add({
       targets: saveScore,
       alpha: {
         from: 0,
-        to: 1
+        to: 1,
       },
       ease: 'Cubic.easeIn',
       duration: 1000,
-      repeat: -1
+      repeat: -1,
     });
 
     saveScore
@@ -137,15 +137,17 @@ export default class winScene extends Phaser.Scene {
       .on('pointerover', () => {
         saveScore.setStyle({
           stroke: '#003366',
-          fill: '#fff'
+          fill: '#fff',
         });
       })
       .on('pointerdown', () => {
         saveScore.setStyle({
           stroke: '#003366',
-          fill: '#fff'
+          fill: '#fff',
         });
+        /* eslint-disable */
         const userName = window.prompt('Please enter your name to save your coinsPoints.');
+        /* eslint-enable */
         if (userName !== '' && userName !== undefined && userName !== null) {
           setScore(userName, total);
         }
@@ -154,7 +156,7 @@ export default class winScene extends Phaser.Scene {
       .on('pointerout', () => {
         saveScore.setStyle({
           stroke: '#fff',
-          fill: '#003366'
+          fill: '#003366',
         });
       });
 
@@ -163,7 +165,7 @@ export default class winScene extends Phaser.Scene {
       fontSize: 40,
       stroke: '#FF0000',
       fill: '#fff',
-      strokeThickness: 5
+      strokeThickness: 5,
     }).setOrigin(0.5);
 
     playAgain
@@ -174,9 +176,8 @@ export default class winScene extends Phaser.Scene {
       .on('pointerout', () => {
         saveScore.setStyle({
           stroke: '#fff',
-          fill: '#003366'
+          fill: '#003366',
         });
       });
-
   }
 }

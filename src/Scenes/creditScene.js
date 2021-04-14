@@ -1,11 +1,9 @@
-import 'phaser';
+import Phaser from 'phaser';
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {
     super('Credits');
   }
-
-  preload() {}
 
   create() {
     this.creditsText = this.add.text(0, 0, 'Credits', {
@@ -13,25 +11,25 @@ export default class CreditsScene extends Phaser.Scene {
       strokeThickness: 12,
       stroke: '#DA1F4C',
       fontSize: '32px',
-      fill: '#fff'
+      fill: '#fff',
     });
     this.madeByText = this.add.text(0, 0, 'Created By: Edxco', {
       fontFamily: 'EquipmentPro',
       strokeThickness: 12,
       stroke: '#fff',
       fontSize: '26px',
-      fill: '#DA1F4C'
+      fill: '#DA1F4C',
     });
     this.zone = this.add.zone(400, 300, 800, 600);
 
     Phaser.Display.Align.In.Center(
       this.creditsText,
-      this.zone
+      this.zone,
     );
 
     Phaser.Display.Align.In.Center(
       this.madeByText,
-      this.zone
+      this.zone,
     );
 
     this.madeByText.setY(1000);
@@ -42,9 +40,9 @@ export default class CreditsScene extends Phaser.Scene {
       ease: 'Power1',
       duration: 3000,
       delay: 1000,
-      onComplete: function () {
+      onComplete() {
         this.destroy;
-      }
+      },
     });
 
     this.madeByTween = this.tweens.add({
@@ -56,7 +54,7 @@ export default class CreditsScene extends Phaser.Scene {
       onComplete: function () {
         this.madeByTween.destroy;
         this.scene.start('Title');
-      }.bind(this)
+      }.bind(this),
     });
   }
-};
+}

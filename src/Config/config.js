@@ -1,4 +1,4 @@
-import '../phaser';
+import Phaser from 'phaser';
 
 export default {
   type: Phaser.AUTO,
@@ -6,19 +6,19 @@ export default {
   height: 600,
   parent: 'edxco',
   dom: {
-    createContainer: true
+    createContainer: true,
   },
   physics: {
     default: 'arcade',
     arcade: {
       gravity: {
-        y: 300
+        y: 300,
       },
-      debug: false
-    }
+      debug: false,
+    },
   },
   scale: {
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 800,
-  }
+  },
 };
