@@ -251,8 +251,8 @@ class GameScene extends Phaser.Scene {
   gameOver() {
     localStorage.setItem('points', this.points)
     localStorage.setItem('time', this.timer.now)
-    this.scene.destroy('Game');
-    this.scene.start('gameOver')
+    this.scene.start('GameOver');
+    //this.scene.destroy('Game');
   }
 
 }

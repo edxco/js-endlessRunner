@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "phaser": "^3.53.1",
+    "regenerator-runtime": "^0.13.7",
     "webpack": "^5.26.3"
   },
   "devDependencies": {

@@ -25,14 +25,14 @@ module.exports = {
           'css-loader',
         ],
       },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'fonts',
-          name: '[name].[ext]',
-        },
-      },
+      // {
+      //   test: /\.(eot|svg|ttf|woff|woff2)$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     outputPath: 'fonts',
+      //     name: '[name].[ext]',
+      //   },
+      // },
       {
         test: /\.(png|jpeg|jpg|svg|gif|mov|mp4)$/i,
         use: {

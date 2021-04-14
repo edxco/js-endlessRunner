@@ -14,7 +14,7 @@ class TitleScene extends Phaser.Scene {
 
     this.add.text(screenCenterX, 100, '- Ice Warrior -', {
       fontFamily: 'EquipmentPro',
-      stroke: '#DA1F4C',
+      stroke: '#265CFF',
       strokeThickness: 12,
       fontSize: 60
     }).setOrigin(0.5);
@@ -24,21 +24,21 @@ class TitleScene extends Phaser.Scene {
     const start = this.add.text(screenCenterX, 300, 'Start', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
-      stroke: '#000',
+      stroke: '#003366',
       strokeThickness: 8
     }).setOrigin(0.5);
 
     const score = this.add.text(screenCenterX, 350, 'Scores', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
-      stroke: '#000',
+      stroke: '#003366',
       strokeThickness: 8
     }).setOrigin(0.5);
 
     const credits = this.add.text(screenCenterX, 400, 'Credits', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
-      stroke: '#000',
+      stroke: '#003366',
       strokeThickness: 8
     }).setOrigin(0.5);
 
@@ -91,7 +91,7 @@ class TitleScene extends Phaser.Scene {
 
   enterButtonHoverState(btn) {
     btn.setStyle({
-      fill: '#DA1F4C'
+      fill: '#000'
     });
   }
 
