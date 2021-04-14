@@ -23,12 +23,10 @@ export default class gameOverScene extends Phaser.Scene {
     let timeSpent = localStorage.getItem('time');
     let levelMaxTime = 20;
 
-    let bonus = (timeSpent >= levelMaxTime) ? 1.1 : 1.3;
-
     timeSpent = Math.round(timeSpent * 100) / 100
 
      // Compute the final score
-     let total = Math.round(Math.max(1, levelMaxTime - timeSpent) * bonus  * 1);
+     let total = Math.round(Math.max(1, timeSpent - levelMaxTime) * 1);
      total = total * coinsPoints;
 
     this.text1 = this.add.text(layOutX, 100, 'You lost!', {
@@ -76,25 +74,7 @@ export default class gameOverScene extends Phaser.Scene {
       duration: 1500
     });
 
-    this.text3 = this.add.text(layOutX, 260, `Bonus: ${bonus}`, {
-      fontFamily: 'equipmentPro',
-      stroke: '#fff',
-      strokeThickness: 8,
-      fontSize: '32px',
-      fill: '#FF0000'
-    });
-
-    this.tweens.add({
-      targets: this.text3,
-      alpha: {
-        from: 0,
-        to: 1
-      },
-      ease: 'Cubic.easeIn',
-      duration: 2000
-    });
-
-    this.text4 = this.add.text(layOutX, 330, `Your score: ${total}`, {
+    this.text4 = this.add.text(layOutX, 260, `Your score: ${total}`, {
       fontFamily: 'equipmentPro',
       stroke: '#fff',
       strokeThickness: 5,
@@ -113,7 +93,7 @@ export default class gameOverScene extends Phaser.Scene {
     });
 
 
-    const savecoinsPoints = this.add.text(400, 450, 'Save my coinsPoints', {
+    const savecoinsPoints = this.add.text(400, 450, 'Save my score', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#003366',

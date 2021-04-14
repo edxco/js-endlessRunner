@@ -4,11 +4,11 @@ import {
 
 export default class winScene extends Phaser.Scene {
   constructor() {
-    super('WinScene');
+    super('Win');
   }
 
   preload() {
-    this.load.image('bg', '../src/assets/props/gameover.png');
+    this.load.image('bg', '../src/assets/props/win.png');
   }
 
   create() {
@@ -21,9 +21,9 @@ export default class winScene extends Phaser.Scene {
 
     let coinsPoints = localStorage.getItem('points');
     let timeSpent = localStorage.getItem('time');
-    let levelMaxTime = 40;
+    let levelMaxTime = 60;
 
-    let bonus = (timeSpent <= 40) ? 2 : 1.5;
+    let bonus = (timeSpent <= levelMaxTime) ? 2 : 1.5;
 
     timeSpent = Math.round(timeSpent * 100) / 100
 
