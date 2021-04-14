@@ -5,7 +5,7 @@ import {
 
 class scoreBoard extends Phaser.Scene {
   constructor() {
-    super('scoreBoard');
+    super('ScoreBoard');
 
     this.center = 768 / 2;
     this.fontSize = 42;

@@ -1,5 +1,5 @@
 import {
-  setcoinsPoints, setScore
+  setScore
 } from "../js/getScore";
 
 export default class winScene extends Phaser.Scene {
@@ -113,7 +113,7 @@ export default class winScene extends Phaser.Scene {
     });
 
 
-    const savecoinsPoints = this.add.text(400, 450, 'Save my coinsPoints', {
+    const saveScore = this.add.text(400, 450, 'Save my coinsPoints', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,
       stroke: '#003366',
@@ -122,7 +122,7 @@ export default class winScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     this.tweens.add({
-      targets: savecoinsPoints,
+      targets: saveScore,
       alpha: {
         from: 0,
         to: 1
@@ -132,16 +132,16 @@ export default class winScene extends Phaser.Scene {
       repeat: -1
     });
 
-    savecoinsPoints
+    saveScore
       .setInteractive()
       .on('pointerover', () => {
-        savecoinsPoints.setStyle({
+        saveScore.setStyle({
           stroke: '#003366',
           fill: '#fff'
         });
       })
       .on('pointerdown', () => {
-        savecoinsPoints.setStyle({
+        saveScore.setStyle({
           stroke: '#003366',
           fill: '#fff'
         });
@@ -149,10 +149,10 @@ export default class winScene extends Phaser.Scene {
         if (userName !== '' && userName !== undefined && userName !== null) {
           setScore(userName, total);
         }
-        this.scene.start('coinsPointsBoard');
+        this.scene.start('ScoreBoard');
       })
       .on('pointerout', () => {
-        savecoinsPoints.setStyle({
+        saveScore.setStyle({
           stroke: '#fff',
           fill: '#003366'
         });
@@ -172,7 +172,7 @@ export default class winScene extends Phaser.Scene {
         this.scene.start('Game');
       })
       .on('pointerout', () => {
-        savecoinsPoints.setStyle({
+        saveScore.setStyle({
           stroke: '#fff',
           fill: '#003366'
         });
