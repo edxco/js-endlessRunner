@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   CleanWebpackPlugin,
 } = require('clean-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
-// This plugin will remove all files inside webpack's output.path directory, as well as all unused 
+// This plugin will remove all files inside webpack's output.path directory, as well as all unused
 // webpack assets after every successful rebuild.
 module.exports = {
   mode: 'development',
@@ -37,28 +37,28 @@ module.exports = {
     {
       test: [/\.vert$/, /\.frag$/],
       use: 'raw-loader',
-    }, 
+    },
     // This loader will bundle Vertex and Fragment shaders.
     {
       test: /\.(gif|png|jpe?g|svg|xml)$/i,
       use: 'file-loader',
-    }, 
+    },
     ],
   },
   plugins: [
     new CleanWebpackPlugin({
       root: path.resolve(__dirname, '../'),
-    }), 
+    }),
     // Path where this plugin will delete the
     // files on each rebuild
     new webpack.DefinePlugin({
       CANVAS_RENDERER: JSON.stringify(true),
       WEBGL_RENDERER: JSON.stringify(true),
-    }), 
+    }),
     // config webpack to handle renderer swapping in our app
     new HtmlWebpackPlugin({
       template: './index.html',
-    }), 
+    }),
     // specify where the HTML template is located
   ],
 };
