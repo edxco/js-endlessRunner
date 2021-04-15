@@ -112,7 +112,6 @@ export default class winScene extends Phaser.Scene {
       duration: 2800,
     });
 
-
     const saveScore = this.add.text(400, 450, 'Save my coinsPoints', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,

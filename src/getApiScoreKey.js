@@ -1,4 +1,3 @@
-
 // to get the KEY
 const newGame = {
   name: 'Ice Warrior',
