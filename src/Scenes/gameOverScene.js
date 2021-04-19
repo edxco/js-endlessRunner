@@ -1,8 +1,12 @@
-import Phaser from 'phaser';
+import Phaser, {
+  Game
+} from 'phaser';
 
 import {
   setScore,
 } from '../js/getScore';
+
+import scoreBoard from '../Scenes/scoreBoard';
 
 export default class gameOverScene extends Phaser.Scene {
   constructor() {
@@ -11,12 +15,48 @@ export default class gameOverScene extends Phaser.Scene {
 
   preload() {
     this.load.image('bg', '../src/assets/props/gameover.png');
+    this.load.html('nameform', '../src/nameform.html');
   }
 
   create() {
-    const { width } = this.scale;
+    const {
+      width
+    } = this.scale;
 
     const layOutX = (width / 2) - 200;
+
+    const saveScore = this.add.dom(400, 355).createFromCache('nameform');
+    saveScore.addListener('click');
+
+    saveScore.addListener('click');
+    saveScore.on('click', function (event) {
+      if (event.target.name === 'playButton') {
+        var inputText = this.getChildByName('nameField');
+
+        //  When text is send
+        if (inputText.value !== '') {
+          warning.visible = false;
+          //  Turn off the click events
+          this.removeListener('click');
+          //  Remove HTML elements
+          this.setVisible(false);
+          //  Set Score
+          setScore(inputText.value, total);
+          game.scene.start('ScoreBoard');
+        } else {
+          //  Flash the prompt
+          warning.visible = true;
+        }
+      }
+
+    });
+
+    this.tweens.add({
+      targets: saveScore,
+      y: 365,
+      duration: 3000,
+      ease: 'Power3'
+    });
 
     this.add.image(400, 300, 'bg');
 
@@ -25,6 +65,13 @@ export default class gameOverScene extends Phaser.Scene {
     const levelMaxTime = 20;
 
     timeSpent = Math.round(timeSpent * 100) / 100;
+
+    const warning = this.add.text(layOutX + 100, 380, 'Cannot continue, enter your player name', {
+      fontSize: '12px',
+      fill: '#fff'
+    });
+
+    warning.visible = false;
 
     // Compute the final score
     let total = Math.round(Math.max(1, timeSpent - levelMaxTime) * 1);
@@ -93,53 +140,6 @@ export default class gameOverScene extends Phaser.Scene {
       duration: 2800,
     });
 
-    const saveScore = this.add.text(400, 450, 'Save my score', {
-      fontFamily: 'EquipmentPro',
-      fontSize: 44,
-      stroke: '#003366',
-      fill: '#fff',
-      strokeThickness: 11,
-    }).setOrigin(0.5);
-
-    this.tweens.add({
-      targets: saveScore,
-      alpha: {
-        from: 0,
-        to: 1,
-      },
-      ease: 'Cubic.easeIn',
-      duration: 1000,
-      repeat: -1,
-    });
-
-    saveScore
-      .setInteractive()
-      .on('pointerover', () => {
-        saveScore.setStyle({
-          stroke: '#003366',
-          fill: '#fff',
-        });
-      })
-      .on('pointerdown', () => {
-        saveScore.setStyle({
-          stroke: '#003366',
-          fill: '#fff',
-        });
-        /* eslint-disable */
-        const userName = window.prompt('Please enter your name to save your score.');
-        /* eslint-enable */
-        if (userName !== '' && userName !== undefined && userName !== null) {
-          setScore(userName, total);
-        }
-        this.scene.start('ScoreBoard');
-      })
-      .on('pointerout', () => {
-        saveScore.setStyle({
-          stroke: '#fff',
-          fill: '#003366',
-        });
-      });
-
     const playAgain = this.add.text(400, 500, 'Play Again', {
       fontFamily: 'EquipmentPro',
       fontSize: 40,
@@ -154,7 +154,7 @@ export default class gameOverScene extends Phaser.Scene {
         this.scene.start('Game');
       })
       .on('pointerout', () => {
-        saveScore.setStyle({
+        playAgain.setStyle({
           stroke: '#fff',
           fill: '#003366',
         });

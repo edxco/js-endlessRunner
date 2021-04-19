@@ -18,6 +18,7 @@ class scoreBoard extends Phaser.Scene {
   }
 
   create() {
+    this.cameras.main.setBackgroundColor('#000000')
     const start = this.add.text(this.center, 110, 'Play Again', {
       fontFamily: 'EquipmentPro',
       fontSize: 44,

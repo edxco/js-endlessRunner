@@ -10,6 +10,7 @@ export default class winScene extends Phaser.Scene {
 
   preload() {
     this.load.image('bg', '../src/assets/props/win.png');
+    this.load.html('nameform', '../src/nameform.html');
   }
 
   create() {
@@ -31,7 +32,40 @@ export default class winScene extends Phaser.Scene {
     let total = Math.round(Math.max(1, levelMaxTime - timeSpent) * bonus * 1);
     total *= coinsPoints;
 
-    this.text1 = this.add.text(layOutX, 100, 'You lost!', {
+    const saveScore = this.add.dom(400, 380).createFromCache('nameform');
+    saveScore.addListener('click');
+
+    saveScore.addListener('click');
+    saveScore.on('click', function (event) {
+      if (event.target.name === 'playButton') {
+        var inputText = this.getChildByName('nameField');
+
+        //  When text is send
+        if (inputText.value !== '') {
+          warning.visible = false;
+          //  Turn off the click events
+          this.removeListener('click');
+          //  Remove HTML elements
+          this.setVisible(false);
+          //  Set Score
+          setScore(inputText.value, total);
+          game.scene.start('ScoreBoard');
+        } else {
+          //  Flash the prompt
+          warning.visible = true;
+        }
+      }
+
+    });
+
+    this.tweens.add({
+      targets: saveScore,
+      y: 440,
+      duration: 3000,
+      ease: 'Power3'
+    });
+
+    this.text1 = this.add.text(layOutX, 100, 'You arrive safely!', {
       fontFamily: 'equipmentPro',
       align: 'center',
       stroke: '#fff',
@@ -39,6 +73,14 @@ export default class winScene extends Phaser.Scene {
       fontSize: '49px',
       fill: '#265CFF',
     });
+
+
+    const warning = this.add.text(layOutX + 100, 465, 'Cannot continue, enter your player name', {
+      fontSize: '12px',
+      fill: '#fff'
+    });
+
+    warning.visible = false;
 
     this.text1 = this.add.text(layOutX, 180, `Coins: ${coinsPoints}`, {
       fontFamily: 'equipmentPro',
@@ -112,53 +154,6 @@ export default class winScene extends Phaser.Scene {
       duration: 2800,
     });
 
-    const saveScore = this.add.text(400, 450, 'Save my coinsPoints', {
-      fontFamily: 'EquipmentPro',
-      fontSize: 44,
-      stroke: '#003366',
-      fill: '#fff',
-      strokeThickness: 11,
-    }).setOrigin(0.5);
-
-    this.tweens.add({
-      targets: saveScore,
-      alpha: {
-        from: 0,
-        to: 1,
-      },
-      ease: 'Cubic.easeIn',
-      duration: 1000,
-      repeat: -1,
-    });
-
-    saveScore
-      .setInteractive()
-      .on('pointerover', () => {
-        saveScore.setStyle({
-          stroke: '#003366',
-          fill: '#fff',
-        });
-      })
-      .on('pointerdown', () => {
-        saveScore.setStyle({
-          stroke: '#003366',
-          fill: '#fff',
-        });
-        /* eslint-disable */
-        const userName = window.prompt('Please enter your name to save your coinsPoints.');
-        /* eslint-enable */
-        if (userName !== '' && userName !== undefined && userName !== null) {
-          setScore(userName, total);
-        }
-        this.scene.start('ScoreBoard');
-      })
-      .on('pointerout', () => {
-        saveScore.setStyle({
-          stroke: '#fff',
-          fill: '#003366',
-        });
-      });
-
     const playAgain = this.add.text(400, 500, 'Play Again', {
       fontFamily: 'EquipmentPro',
       fontSize: 40,
@@ -173,7 +168,7 @@ export default class winScene extends Phaser.Scene {
         this.scene.start('Game');
       })
       .on('pointerout', () => {
-        saveScore.setStyle({
+        playAgain.setStyle({
           stroke: '#fff',
           fill: '#003366',
         });
