@@ -71,7 +71,7 @@ class TitleScene extends Phaser.Scene {
         this.enterButtonHoverState(score);
       })
       .on('pointerdown', () => {
-        this.clickButton('Score');
+        this.clickButton('ScoreBoard');
       })
       .on('pointerout', () => {
         this.enterButtonRestState(score);
