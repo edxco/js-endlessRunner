@@ -1,4 +1,4 @@
-**🎮️ Name of the game: Dog Years**
+**🎮️ Name of the game: Ice Warrior**
 
 * Dev: [Eduardo Baeza](https://www.linkedin.com/in/eduardo-n-baeza/)
 
@@ -25,6 +25,8 @@ Player need to jump without falling from the platforms or been hit by an enemy
 ## 👤 Characters
 
 * The warrior
+
+  ![](readme-img/warrior-idle.gif)
 * The bats
 
 ## 🗺️ Locations

@@ -2,7 +2,7 @@
 
 # Ice Warrior - Platform Game
 
-![ice_Warrior](screenshot.png)
+![ice_Warrior](readme-img/screenshot.gif)
 
 You can find the project's requirements [here](https://www.notion.so/Platform-game-4a55a7d1fcc245bcb012c76814764712).
 
@@ -29,13 +29,13 @@ In this project I:
 
 # How to play
 
-- When the App is executed, you will see four buttons:
+- When the App is executed, you will see three buttons:
   - Start: Starts the game
   - Scores: Allows you to check the high scores leaderboard
   - Credits: Shows you the credits scene
 
-- When the game starts, the story's intro will be played
-- Then you will be able to control the warrior with up and right ARROW keys to move
+- When the game starts you will be able to control the warrior with up and right ARROW keys to move
+- Be careful, your warrior will slip through the floor
 - Try to collect as many coins as you can!
 - If you get hit by a bat or fall off the platform, It will be game over.
 - Get a bonus score if you pass all the platforms alive.
