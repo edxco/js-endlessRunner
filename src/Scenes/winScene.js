@@ -35,34 +35,11 @@ export default class winScene extends Phaser.Scene {
     const saveScore = this.add.dom(400, 380).createFromCache('nameform');
     saveScore.addListener('click');
 
-    saveScore.addListener('click');
-    saveScore.on('click', function (event) {
-      if (event.target.name === 'playButton') {
-        var inputText = this.getChildByName('nameField');
-
-        //  When text is send
-        if (inputText.value !== '') {
-          warning.visible = false;
-          //  Turn off the click events
-          this.removeListener('click');
-          //  Remove HTML elements
-          this.setVisible(false);
-          //  Set Score
-          setScore(inputText.value, total);
-          game.scene.start('ScoreBoard');
-        } else {
-          //  Flash the prompt
-          warning.visible = true;
-        }
-      }
-
-    });
-
     this.tweens.add({
       targets: saveScore,
       y: 440,
       duration: 3000,
-      ease: 'Power3'
+      ease: 'Power3',
     });
 
     this.text1 = this.add.text(layOutX, 100, 'You arrive safely!', {
@@ -74,10 +51,9 @@ export default class winScene extends Phaser.Scene {
       fill: '#265CFF',
     });
 
-
     const warning = this.add.text(layOutX + 100, 465, 'Cannot continue, enter your player name', {
       fontSize: '12px',
-      fill: '#fff'
+      fill: '#fff',
     });
 
     warning.visible = false;
@@ -173,5 +149,26 @@ export default class winScene extends Phaser.Scene {
           fill: '#003366',
         });
       });
+
+    saveScore.on('click', function (event) {
+      if (event.target.name === 'playButton') {
+        const inputText = this.getChildByName('nameField');
+
+        //  When text is send
+        if (inputText.value !== '') {
+          warning.visible = false;
+          //  Turn off the click events
+          this.removeListener('click');
+          //  Remove HTML elements
+          this.setVisible(false);
+          //  Set Score
+          setScore(inputText.value, total);
+          window.game.scene.start('ScoreBoard');
+        } else {
+          //  Flash the prompt
+          warning.visible = true;
+        }
+      }
+    });
   }
 }

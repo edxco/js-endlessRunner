@@ -1,12 +1,8 @@
-import Phaser, {
-  Game
-} from 'phaser';
+import Phaser from 'phaser';
 
 import {
   setScore,
 } from '../js/getScore';
-
-import scoreBoard from '../Scenes/scoreBoard';
 
 export default class gameOverScene extends Phaser.Scene {
   constructor() {
@@ -20,7 +16,7 @@ export default class gameOverScene extends Phaser.Scene {
 
   create() {
     const {
-      width
+      width,
     } = this.scale;
 
     const layOutX = (width / 2) - 200;
@@ -28,34 +24,11 @@ export default class gameOverScene extends Phaser.Scene {
     const saveScore = this.add.dom(400, 355).createFromCache('nameform');
     saveScore.addListener('click');
 
-    saveScore.addListener('click');
-    saveScore.on('click', function (event) {
-      if (event.target.name === 'playButton') {
-        var inputText = this.getChildByName('nameField');
-
-        //  When text is send
-        if (inputText.value !== '') {
-          warning.visible = false;
-          //  Turn off the click events
-          this.removeListener('click');
-          //  Remove HTML elements
-          this.setVisible(false);
-          //  Set Score
-          setScore(inputText.value, total);
-          game.scene.start('ScoreBoard');
-        } else {
-          //  Flash the prompt
-          warning.visible = true;
-        }
-      }
-
-    });
-
     this.tweens.add({
       targets: saveScore,
       y: 365,
       duration: 3000,
-      ease: 'Power3'
+      ease: 'Power3',
     });
 
     this.add.image(400, 300, 'bg');
@@ -68,7 +41,7 @@ export default class gameOverScene extends Phaser.Scene {
 
     const warning = this.add.text(layOutX + 100, 380, 'Cannot continue, enter your player name', {
       fontSize: '12px',
-      fill: '#fff'
+      fill: '#fff',
     });
 
     warning.visible = false;
@@ -159,5 +132,26 @@ export default class gameOverScene extends Phaser.Scene {
           fill: '#003366',
         });
       });
+
+    saveScore.on('click', function (event) {
+      if (event.target.name === 'playButton') {
+        const inputText = this.getChildByName('nameField');
+
+        //  When text is send
+        if (inputText.value !== '') {
+          warning.visible = false;
+          //  Turn off the click events
+          this.removeListener('click');
+          //  Remove HTML elements
+          this.setVisible(false);
+          //  Set Score
+          setScore(inputText.value, total);
+          window.game.scene.start('ScoreBoard');
+        } else {
+          //  Flash the prompt
+          warning.visible = true;
+        }
+      }
+    });
   }
 }
