@@ -10,7 +10,7 @@ export default class winScene extends Phaser.Scene {
 
   preload() {
     this.load.image('bg', '../src/assets/props/win.png');
-    this.load.html('nameform', '../src/nameform.html');
+    this.load.html('nameform', '../src/assets/nameform.html');
   }
 
   create() {
