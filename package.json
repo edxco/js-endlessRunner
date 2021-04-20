@@ -20,7 +20,7 @@
     "test": "jest",
     "watch": "webpack --watch",
     "build": "webpack --config webpack/prod.js",
-    "dev": "webpack-dev-server --config webpack/base.js --open"
+    "dev": "webpack serve --config webpack/base.js --open"
   },
   "repository": {
     "type": "git",

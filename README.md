@@ -55,7 +55,7 @@ In this project I:
 - Clone the repository on your local machine
 - Cd into the folder
 - Install dependecies by running `npm install`
-- Run `npm start`
+- Run `npm run build`
 - Open your browser and type `localhost:8080`
 
 
