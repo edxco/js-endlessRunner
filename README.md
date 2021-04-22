@@ -1,4 +1,5 @@
-[![hire-badge](https://img.shields.io/badge/Consult%20/%20Hire%20Edxco-Click%20to%20Contact-brightgreen)](mailto:eduardo.baeza@yahoo.com)
+[![hire-badge](https://img.shields.io/badge/Consult%20/%20Hire%20Edxco-Click%20to%20Contact-brightgreen)](mailto:eduardo.baeza@yahoo.com) 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2582c4e8-1b0d-4ff5-b63b-331aeaa48a49/deploy-status)](https://app.netlify.com/sites/ice-warrior/deploys)
 
 # Ice Warrior - Platform Game
 
